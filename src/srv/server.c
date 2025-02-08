@@ -6,11 +6,12 @@
 #include <poll.h>
 #include "srvpoll.h"
 #include <unistd.h>
+#include <string.h>
 
 void handle_client(int fd){
-    char buf[4096] = {0};
+    char buf[5000] = "Hello client!";
 
-    write(fd,buf, sizeof(buf) );
+    write(fd,buf, strlen(buf) );
 
 }
 
@@ -56,11 +57,16 @@ int main() {
 
     struct pollfd fds[2];
     
-    int cfd = -1;
+    //int cfd = -1;
 
     fds[0].fd = fd;
     fds[0].events = POLLIN;
-            fds[1].fd = -1; //init client fd
+    fds[1].fd = -1; //init client fd
+    //loop to init all fds until MAX_CLIENTS
+    for(int i = 1; i < MAX_CLIENTS;i++) {
+        fds[i].fd = -1;
+    }
+
 
 
     if (setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&opt,sizeof(int)) == -1) {
@@ -68,10 +74,6 @@ int main() {
     }
 
     while (1) {
-
-        
-
-
 
         int ret = poll(fds,2, -1);
 
@@ -83,9 +85,11 @@ int main() {
             
         }
         if (fds[1].fd != -1 && fds[1].revents & POLLIN) {
-            handle_client(cfd);
-            close(cfd);
-                        fds[1].fd = -1; //init client fd
+            printf("In after handle client");
+            handle_client(fds[1].fd);
+
+            close(fds[1].fd);
+            fds[1].fd = -1; //init client fd
 
 
         }

@@ -1,0 +1,52 @@
+Reading symbols from ./bin/ircd...
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGINT, Interrupt.
+warning: Nothing to save.
+0x00007ffff7e90b97 in __GI___poll (fds=0x7fffffffd230, nfds=2, timeout=-1) at ../sysdeps/unix/sysv/linux/poll.c:29
+rax            0xfffffffffffffdfc  -516
+rbx            0x0                 0
+rcx            0x7ffff7e90b97      140737352633239
+rdx            0xffffffff          4294967295
+rsi            0x2                 2
+rdi            0x7fffffffd230      140737488343600
+rbp            0x7fffffffd250      0x7fffffffd250
+rsp            0x7fffffffd1e8      0x7fffffffd1e8
+r8             0x4                 4
+r9             0x7fffffffd0c4      140737488343236
+r10            0x55555555603f      93824992239679
+r11            0x246               582
+r12            0x7fffffffd368      140737488343912
+r13            0x555555555392      93824992236434
+r14            0x555555557d58      93824992247128
+r15            0x7ffff7ffd040      140737354125376
+rip            0x7ffff7e90b97      0x7ffff7e90b97 <__GI___poll+23>
+eflags         0x246               [ PF ZF IF ]
+cs             0x33                51
+ss             0x2b                43
+ds             0x0                 0
+es             0x0                 0
+fs             0x0                 0
+gs             0x0                 0
+Continuing.
+
+Program received signal SIGINT, Interrupt.
+warning: Nothing to save.
+0x00007ffff7e90b97 in __GI___poll (fds=0x7fffffffd230, nfds=2, timeout=-1) at ../sysdeps/unix/sysv/linux/poll.c:29
+Continuing.
+
+Program received signal SIGINT, Interrupt.
+warning: Nothing to save.
+0x00007ffff7e90b97 in __GI___poll (fds=0x7fffffffd230, nfds=2, timeout=-1) at ../sysdeps/unix/sysv/linux/poll.c:29
+
+quit
+Reading symbols from ./bin/ircd...
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGINT, Interrupt.
+warning: Nothing to save.
+0x00007ffff7e90b97 in __GI___poll (fds=0x7fffffffd230, nfds=2, timeout=-1) at ../sysdeps/unix/sysv/linux/poll.c:29

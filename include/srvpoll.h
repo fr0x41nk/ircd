@@ -1,2 +1,2 @@
-#define PORT 6667
+#define PORT 6668
 #define MAX_CLIENTS 256

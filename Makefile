@@ -8,7 +8,7 @@ CFLAGS = -g -Wall -Wextra -Iinclude
 #LDFLAGS = -fsanitize=address
 
 run: clean default
-	./$(TARGET_SRV) 
+	#./$(TARGET_SRV) 
 	#kill -9 $$(pidof ircd)
 
 default: $(TARGET_SRV)
