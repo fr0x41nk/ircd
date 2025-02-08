@@ -55,13 +55,13 @@ int main() {
 
     int opt = 1;
 
-    struct pollfd fds[2];
+    struct pollfd fds[MAX_CLIENTS];
     
     //int cfd = -1;
 
     fds[0].fd = fd;
     fds[0].events = POLLIN;
-    fds[1].fd = -1; //init client fd
+    //fds[1].fd = -1; //init client fd
     //loop to init all fds until MAX_CLIENTS
     for(int i = 1; i < MAX_CLIENTS;i++) {
         fds[i].fd = -1;
@@ -75,7 +75,7 @@ int main() {
 
     while (1) {
 
-        int ret = poll(fds,2, -1);
+        int ret = poll(fds,MAX_CLIENTS, -1); //her polles alle FD laget i structen
 
         if (ret > 0) {
             if (fds[0].revents & POLLIN) {
