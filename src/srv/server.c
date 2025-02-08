@@ -73,6 +73,11 @@ int main() {
         perror("setsockopt");
     }
 
+    int find_rdy_fd(fd) {
+        //boo
+        //iterate over fd and return the int of the fd that is ready (-1)
+    } 
+
     while (1) {
 
         int ret = poll(fds,MAX_CLIENTS, -1); //her polles alle FD laget i structen
@@ -80,6 +85,7 @@ int main() {
         if (ret > 0) {
             if (fds[0].revents & POLLIN) {
                 int cfd = accept(fd, (struct sockaddr*)&client_addr,&clientSize);
+                //call find_rdy_fd
                 fds[1].fd = cfd;
                 fds[1].events = POLLIN;
             
