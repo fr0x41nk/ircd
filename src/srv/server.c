@@ -7,7 +7,12 @@
 #include "srvpoll.h"
 #include <unistd.h>
 
+void handle_client(int fd){
+    char buf[4096] = {0};
 
+    write(fd,buf, sizeof(buf) );
+
+}
 
 int main() {
 
@@ -17,6 +22,9 @@ int main() {
     server_addr.sin_family = AF_INET;
     server_addr.sin_addr.s_addr = 0;
     server_addr.sin_port = htons(PORT);
+    //unsigned int clientSize = 0;
+    socklen_t clientSize = sizeof(client_addr);
+
     
 
 
@@ -46,7 +54,7 @@ int main() {
 
     int opt = 1;
 
-    struct pollfd fds[MAX_CLIENTS];
+    struct pollfd fds[2];
     
     int cfd = -1;
 
@@ -59,25 +67,29 @@ int main() {
     }
 
     while (1) {
-        int ret = poll(fds,MAX_CLIENTS, -1);
+        fds[1].fd = -1; //init client fd
+        fds[1].events = 0; //init cliend fd
+
+        int ret = poll(fds,2, -1);
 
         if (ret > 0) {
             if (fds[0].revents & POLLIN) {
-                cfd = accept(fd, (struct sockaddr*)&clientInfo,&clientSize);
+                int cfd = accept(fd, (struct sockaddr*)&client_addr,&clientSize);
                 fds[1].fd = cfd;
-            }
+                fds[1].events = POLLIN;
+            
         }
         if (fds[1].fd != -1 && fds[1].revents & POLLIN) {
             handle_client(cfd);
             close(cfd);
-            fds[1].fd = -1;
+
         }
     } else if (ret == 0) {
         printf("Timeout!");
         return 0;
-
     } else {
         printf("Error occured\n");
     }
 }
 
+}
