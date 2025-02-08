@@ -60,15 +60,18 @@ int main() {
 
     fds[0].fd = fd;
     fds[0].events = POLLIN;
-    
+            fds[1].fd = -1; //init client fd
+
 
     if (setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&opt,sizeof(int)) == -1) {
         perror("setsockopt");
     }
 
     while (1) {
-        fds[1].fd = -1; //init client fd
-        fds[1].events = 0; //init cliend fd
+
+        
+
+
 
         int ret = poll(fds,2, -1);
 
@@ -82,6 +85,8 @@ int main() {
         if (fds[1].fd != -1 && fds[1].revents & POLLIN) {
             handle_client(cfd);
             close(cfd);
+                        fds[1].fd = -1; //init client fd
+
 
         }
     } else if (ret == 0) {
