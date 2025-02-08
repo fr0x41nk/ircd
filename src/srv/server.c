@@ -15,6 +15,8 @@ void handle_client(int fd){
 
 }
 
+
+
 int main() {
 
     struct sockaddr_in server_addr, client_addr = {0};
@@ -26,7 +28,6 @@ int main() {
     //unsigned int clientSize = 0;
     socklen_t clientSize = sizeof(client_addr);
 
-    
 
 
     int fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -73,19 +74,22 @@ int main() {
         perror("setsockopt");
     }
 
-    int find_rdy_fd(fd) {
-        //boo
-        //iterate over fd and return the int of the fd that is ready (-1)
-    } 
+
 
     while (1) {
 
-        int ret = poll(fds,MAX_CLIENTS, -1); //her polles alle FD laget i structen
 
-        if (ret > 0) {
+
+        int n_events = poll(fds,MAX_CLIENTS, -1); //her polles alle FD laget i structen
+        //On success, poll() returns a nonnegative
+        //value which is the number of elements in the pollfds whose revents fields have been set to a 
+        //nonzero value
+
+        if (n_events > 0) {
             if (fds[0].revents & POLLIN) {
                 int cfd = accept(fd, (struct sockaddr*)&client_addr,&clientSize);
-                //call find_rdy_fd
+
+                //end test
                 fds[1].fd = cfd;
                 fds[1].events = POLLIN;
             
@@ -99,7 +103,7 @@ int main() {
 
 
         }
-    } else if (ret == 0) {
+    } else if (n_events == 0) {
         printf("Timeout!");
         return 0;
     } else {
