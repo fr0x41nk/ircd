@@ -17,3 +17,12 @@ void init_clients(clientstate_t *states) {
         memset(&states[i].buffer, '\0', BUFF_SIZE);
     }
 }
+
+int find_free_slot(clientstate_t *states) {
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (states[i].fd == -1) {
+            return i; //return the first fd that is -1 (free slot)
+        }
+    }
+    return -1;
+}
