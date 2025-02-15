@@ -8,6 +8,9 @@
 #include <unistd.h>
 #include <string.h>
 
+clientstate_t clientStates[MAX_CLIENTS] = {0};
+
+
 void handle_client(int fd){
     char buf[5000] = "Hello client!";
 
@@ -45,6 +48,8 @@ int main() {
     }
 
     //listen
+    init_clients(&clientStates);
+
 
     if (listen(fd,0) == -1) {
         perror("Listen");
@@ -68,17 +73,11 @@ int main() {
         fds[i].fd = -1;
     }
 
-
-
     if (setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&opt,sizeof(int)) == -1) {
         perror("setsockopt");
     }
-
-
-
+int cfd = 0;
     while (1) {
-
-
 
         int n_events = poll(fds,MAX_CLIENTS, -1); //her polles alle FD laget i structen
         //On success, poll() returns a nonnegative
@@ -87,12 +86,15 @@ int main() {
 
         if (n_events > 0) {
             if (fds[0].revents & POLLIN) {
-                int cfd = accept(fd, (struct sockaddr*)&client_addr,&clientSize);
+               if ((cfd = accept(fd, (struct sockaddr*)&client_addr,&clientSize)) == -1) {
+                perror("accept");
+                continue;
+               } 
+               printf("New connection from %s:%d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
 
-                //end test
-                fds[1].fd = cfd;
-                fds[1].events = POLLIN;
-            
+
+
+
         }
         if (fds[1].fd != -1 && fds[1].revents & POLLIN) {
             printf("In after handle client");
@@ -112,3 +114,4 @@ int main() {
 }
 
 }
+// lag en ny struct som heter client, inneholde samme fd som pollfd, ip, nick, osv
