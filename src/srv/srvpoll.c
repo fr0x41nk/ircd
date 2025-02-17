@@ -26,3 +26,12 @@ int find_free_slot(clientstate_t *states) {
     }
     return -1;
 }
+
+int find_slot_by_fd(clientstate_t *states, int fd) {
+    for (int i = 0; i < MAX_CLIENTS; i++ ) {
+        if (states[i].fd == fd) {
+            return i;
+        }
+    }
+    return -1; //not found
+}

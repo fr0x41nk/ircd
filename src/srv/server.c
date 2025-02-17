@@ -77,7 +77,11 @@ int main() {
         perror("setsockopt");
     }
 int cfd = 0;
+int freeSlot;
+int nfds = 1;
     while (1) {
+
+
 
         int n_events = poll(fds,MAX_CLIENTS, -1); //her polles alle FD laget i structen
         //On success, poll() returns a nonnegative
@@ -90,28 +94,24 @@ int cfd = 0;
                 perror("accept");
                 continue;
                } 
-               printf("New connection from %s:%d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
+               printf("New connection from %s:%d\n",
+                      inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
 
-
+                      freeSlot = find_free_slot(&clientStates);
+                      if (freeSlot == -1) {
+                         printf("Server full: closing new connection\n");
+                         close(cfd);
+                      } else {
+                         clientStates[freeSlot].fd = cfd;
+                         clientStates[freeSlot].state = STATE_CONNECTED;
+                         nfds++;
+                         printf("Slot %d has fd %d\n", freeSlot, clientStates[freeSlot].fd);
+                      }
+             
+                      n_events--;
+                 }
 
 
         }
-        if (fds[1].fd != -1 && fds[1].revents & POLLIN) {
-            printf("In after handle client");
-            handle_client(fds[1].fd);
-
-            close(fds[1].fd);
-            fds[1].fd = -1; //init client fd
-
-
-        }
-    } else if (n_events == 0) {
-        printf("Timeout!");
-        return 0;
-    } else {
-        printf("Error occured\n");
     }
 }
-
-}
-// lag en ny struct som heter client, inneholde samme fd som pollfd, ip, nick, osv
