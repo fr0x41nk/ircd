@@ -50,3 +50,99 @@ Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
 Program received signal SIGINT, Interrupt.
 warning: Nothing to save.
 0x00007ffff7e90b97 in __GI___poll (fds=0x7fffffffd230, nfds=2, timeout=-1) at ../sysdeps/unix/sysv/linux/poll.c:29
+Reading symbols from ./bin/ircd...
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGSEGV, Segmentation fault.
+warning: Nothing to save.
+__strlen_avx2 () at ../sysdeps/x86_64/multiarch/strlen-avx2.S:74
+Continuing.
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+warning: Nothing to save.
+No stack.
+No stack.
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 1575232) exited with code 0377]
+warning: Nothing to save.
+The program is not being run.
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 1575396) exited with code 0377]
+warning: Nothing to save.
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 1575498) exited with code 0377]
+warning: Nothing to save.
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 1575781) exited with code 0377]
+warning: Nothing to save.
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 1575800) exited with code 0377]
+warning: Nothing to save.
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 1575853) exited with code 0377]
+warning: Nothing to save.
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 1575873) exited with code 0377]
+warning: Nothing to save.
+
+quit
+Reading symbols from ./bin/ircd...
+The program is not being run.
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGSEGV, Segmentation fault.
+warning: Nothing to save.
+__strlen_avx2 () at ../sysdeps/x86_64/multiarch/strlen-avx2.S:74
+#0  __strlen_avx2 () at ../sysdeps/x86_64/multiarch/strlen-avx2.S:74
+#1  0x00007ffff7deed31 in __vfprintf_internal (s=0x7ffff7f93780 <_IO_2_1_stdout_>, format=0x555555556008 "Buffer %s", ap=ap@entry=0x7fffffffbcd0, mode_flags=mode_flags@entry=0) at ./stdio-common/vfprintf-internal.c:1517
+#2  0x00007ffff7dd879f in __printf (format=<optimized out>) at ./stdio-common/printf.c:33
+#3  0x00005555555553b2 in handle_client (client=0x555555558040 <clientStates>) at src/srv/server.c:16
+#4  0x00005555555559a3 in main () at src/srv/server.c:157
+Quit
+
+quit
+Reading symbols from ./bin/ircd...
+The program is not being run.
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 1580775) exited with code 0377]
+warning: Nothing to save.
+The program is not being run.
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 1581567) exited with code 0377]
+warning: Nothing to save.
+
+quit
+Reading symbols from ./bin/ircd...
+The program is not being run.
+Starting program: /home/frank/Sync/src/ircd/bin/ircd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGINT, Interrupt.
+warning: Nothing to save.
+0x00007ffff7e90b97 in __GI___poll (fds=0x7fffffffd1c0, nfds=256, timeout=-1) at ../sysdeps/unix/sysv/linux/poll.c:29
+
+quit

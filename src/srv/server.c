@@ -13,7 +13,7 @@ clientstate_t clientStates[MAX_CLIENTS] = {0};
 void handle_client(clientstate_t *client)
 {
     char buf[5000] = "Hello client!";
-    printf("Buffer %s", client->fd);
+    printf("Buffer %s", client->buffer);
     
 
 }
