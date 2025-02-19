@@ -12,10 +12,7 @@ clientstate_t clientStates[MAX_CLIENTS] = {0};
 
 void handle_client(clientstate_t *client)
 {
-    char buf[5000] = "Hello client!";
     printf("Buffer %s", client->buffer);
-    
-
 }
 
 int main()
@@ -60,7 +57,7 @@ int main()
 
     int opt = 1;
 
-    struct pollfd fds[MAX_CLIENTS];
+    struct pollfd fds[MAX_CLIENTS + 1];
 
     // int cfd = -1;
 
@@ -76,6 +73,7 @@ int main()
     if (setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(int)) == -1)
     {
         perror("setsockopt");
+        return -1;
     }
     int cfd = 0;
     int freeSlot;
