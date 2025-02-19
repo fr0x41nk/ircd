@@ -10,11 +10,12 @@
 
 clientstate_t clientStates[MAX_CLIENTS] = {0};
 
-void handle_client(int fd)
+void handle_client(clientstate_t *client)
 {
     char buf[5000] = "Hello client!";
+    printf("Buffer %s", client->fd);
+    
 
-    write(fd, buf, strlen(buf));
 }
 
 int main()
@@ -89,7 +90,6 @@ int main()
                 fds[ii].fd = clientStates[i].fd;
                 fds[ii].events = POLLIN;
                 ii++;
-                printf("foo frm set fds to clientstate\n");
             }
         }
 
@@ -154,6 +154,9 @@ int main()
                     else
                     {
                         printf("Receveied data from client: %s\n", clientStates[slot].buffer);
+                        handle_client(&clientStates[slot]);
+                        //handle_client(*slot)
+
                     }
                 }
             }
